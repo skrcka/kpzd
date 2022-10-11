@@ -13,3 +13,5 @@ Jupyter notebook:
 
 ## Lekce
 1) [numpy](numpy)
+2) [pandas](pandas)
+3) [TensorFlow](tf)
