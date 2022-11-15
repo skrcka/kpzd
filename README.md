@@ -17,3 +17,4 @@ Jupyter notebook:
 3) [TensorFlow](tf)
 4) [Keras (MNIST)](ml/mnist)
 5) [Keras (overfitting)](ml/overfit)
+6) [Keras (konvoluční sítě)](ml/convnet)
