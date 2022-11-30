@@ -12,7 +12,7 @@ $ pip install tensorflow tqdm pillow
 
 ## Soubory
 - [Loader](loader.py) - loader pro dataset Cats vs Dogs.
-- [Training](traing.py) - trénovací kód + definice modelu.
+- [Training](train.py) - trénovací kód + definice modelu.
 
 ## Užitečné odkazy
 - [Vizualizace konvoluce](https://ezyang.github.io/convolution-visualizer/)
