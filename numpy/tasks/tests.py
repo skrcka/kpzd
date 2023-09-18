@@ -4,7 +4,8 @@ import numpy as np
 import imageio
 import pytest
 
-from tasks import max_row_index, sum_edges, to_bw, mirror, split_and_rotate, apply_mask, blend
+from tasks import max_row_index, substitute, sum_edges, to_bw, mirror, split_and_rotate, apply_mask, \
+    blend
 
 
 def test_max_row_index():
@@ -110,6 +111,21 @@ def test_blend(alpha):
     a = load_image("geralt-a.png")
     b = load_image("geralt-b.png")
     check_image_result("blend", f"geralt-blend-{alpha}.png", lambda: blend(a, b, alpha=alpha))
+
+
+def test_substitute():
+    bounds = np.array([
+        (-2.0, 1.0),
+        (-3.0, 0.0),
+        (3.0, 10.0)
+    ])
+
+    eqs = np.array([
+        (1.0, -2.0, -1.0),
+        (3.0, 0.0, -2.0),
+        (-2.0, 1.0, 1.0)
+    ])
+    assert (substitute(eqs, bounds) == np.array([4, -3, 14])).all()
 
 
 def check_image_result(name: str, reference_path: str, fn):

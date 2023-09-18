@@ -13,10 +13,11 @@ Jupyter notebook:
 
 ## Lekce
 1) [numpy](numpy)
-2) [pandas](pandas)
-3) [TensorFlow](tf)
-4) [MNIST with Keras](ml/mnist)
-5) [Handling overfitting)](ml/overfit)
-6) [Convolutional networks](ml/convnet)
-7) [Transfer learning, data augmentation](ml/transfer-learning)
-8) [Segmentation](ml/segmentation)
+
+[//]: # (2&#41; [pandas]&#40;pandas&#41;)
+[//]: # (3&#41; [TensorFlow]&#40;tf&#41;)
+[//]: # (4&#41; [MNIST with Keras]&#40;ml/mnist&#41;)
+[//]: # (5&#41; [Handling overfitting&#41;]&#40;ml/overfit&#41;)
+[//]: # (6&#41; [Convolutional networks]&#40;ml/convnet&#41;)
+[//]: # (7&#41; [Transfer learning, data augmentation]&#40;ml/transfer-learning&#41;)
+[//]: # (8&#41; [Segmentation]&#40;ml/segmentation&#41;)

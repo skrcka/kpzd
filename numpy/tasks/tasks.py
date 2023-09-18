@@ -3,7 +3,7 @@ import numpy as np
 """
 TODO
 Implement the functions below using only numpy operations and functions.
-DO NOT use any Python control flow (no cycles, no ifs, etc.) in any of the tasks.
+Try to avoid any Python control flow (no cycles, no ifs, etc.) in the implementation of the tasks.
 """
 
 
@@ -73,3 +73,18 @@ def blend(img_a: np.ndarray, img_b: np.ndarray, alpha: float) -> np.ndarray:
 
     See data/geralt-a.png (img_a) + data/geralt-b.png (img_a) -> data/geralt-blend-{alpha}.png.
     """
+
+
+def substitute(eqs: np.ndarray, bounds: np.ndarray) -> np.ndarray:
+    """
+    # This is ***VERY BAD*** numpy code, fix it!
+    Try to rewrite it in a way that doesn't use Python control-flow.
+    """
+    output = np.zeros(eqs.shape[0])
+    for i, row in enumerate(eqs):
+        for j, v in enumerate(row):
+            if v < 0:
+                output[i] += v * bounds[j, 0]
+            else:
+                output[i] += v * bounds[j, 1]
+    return output
