@@ -14,6 +14,7 @@ def max_row_index(x: np.ndarray) -> int:
 
     See tests for examples.
     """
+    return np.argmax(x.max(axis=1))
 
 
 def sum_edges(x: np.ndarray) -> int:
@@ -24,6 +25,10 @@ def sum_edges(x: np.ndarray) -> int:
     DO NOT count any edge element more than once!
     See tests for examples.
     """
+    rows, cols = x.shape
+    if rows == 1 or cols == 1:
+        return np.sum(x)
+    return x[0, :].sum() + x[-1, :].sum() + x[1:rows-1, 0].sum() + x[1:rows-1, -1].sum()
 
 
 def to_bw(img: np.ndarray) -> np.ndarray:
@@ -33,14 +38,16 @@ def to_bw(img: np.ndarray) -> np.ndarray:
 
     See data/fei.png -> data/fei-bg.png.
     """
+    return (img.sum(axis=2) / 3).astype(np.uint8)[:, :, np.newaxis].repeat(3, axis=2)
 
 
 def mirror(img: np.ndarray) -> np.ndarray:
     """
-    Mirror the input np.uint8 RGB image along the vertical axis.
+    Mirror the input np.uint8 RGB image along the vertical axis and put it next to the original image.
 
     See data/pyladies.png -> data/pyladies-mirrored.png.
     """
+    return np.hstack((img, img[:, ::-1]))
 
 
 def split_and_rotate(img: np.ndarray, n: int) -> np.ndarray:
@@ -50,6 +57,7 @@ def split_and_rotate(img: np.ndarray, n: int) -> np.ndarray:
 
     See data/pyladies.png -> data/pyladies-split-and-rotate.png.
     """
+    return np.vstack(np.hsplit(img, n))
 
 
 def apply_mask(img: np.ndarray, mask: np.ndarray) -> np.ndarray:
@@ -61,6 +69,7 @@ def apply_mask(img: np.ndarray, mask: np.ndarray) -> np.ndarray:
 
     See data/geralt.png (image) + data/geralt-mask.png (mask) -> data/geralt-masked.png.
     """
+    return img * (mask == 255)
 
 
 def blend(img_a: np.ndarray, img_b: np.ndarray, alpha: float) -> np.ndarray:
@@ -73,13 +82,13 @@ def blend(img_a: np.ndarray, img_b: np.ndarray, alpha: float) -> np.ndarray:
 
     See data/geralt-a.png (img_a) + data/geralt-b.png (img_a) -> data/geralt-blend-{alpha}.png.
     """
+    return (img_a * alpha + img_b * (1 - alpha)).astype(np.uint8)
 
 
 def substitute(eqs: np.ndarray, bounds: np.ndarray) -> np.ndarray:
     """
     # This is ***VERY BAD*** numpy code, fix it!
     Try to rewrite it in a way that doesn't use Python control-flow.
-    """
     output = np.zeros(eqs.shape[0])
     for i, row in enumerate(eqs):
         for j, v in enumerate(row):
@@ -88,3 +97,5 @@ def substitute(eqs: np.ndarray, bounds: np.ndarray) -> np.ndarray:
             else:
                 output[i] += v * bounds[j, 1]
     return output
+    """
+    return np.where(eqs < 0, eqs * bounds[:, 0], eqs * bounds[:, 1]).sum(axis=1)
